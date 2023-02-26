@@ -32,7 +32,10 @@
     </tbody>
   </table>
 
-  <p id ="idealist"></p>
+<table>
+  <table id ="idealist"></table>
+</table>
+
 
   <h2>作成されたイベント</h1>
   <table class="table table-striped">
@@ -74,15 +77,21 @@
             const object = data;
             console.log(object);
 
-            let idealist = document.getElementById('idealist').innerHTML;
-      document.getElementById('idealist').innerHTML = object[1];
+
+            let eventlist = ""
 
             for(let i in object){
               console.log(object[i].id);
-
+              eventlist = eventlist + "<tr><td>" + object[i].id + "</td>";
+              eventlist = eventlist + "<td>" + object[i].eventdate + "</td>";
+              eventlist = eventlist + "<td>" + object[i].eventidea + "</td>";
+              eventlist = eventlist + "</tr>"
           }
 
-          
+          let idealist = document.getElementById('idealist').innerHTML;
+          document.getElementById('idealist').innerHTML = eventlist;
+
+
             //inputタグそれぞれに取得したデータを設定
             $('input').each(function (index, element) {
                 if (object[0][$(element).attr('name')]) {
@@ -91,8 +100,6 @@
             });
         });
 
-      let idealist = document.getElementById('idealist').innerHTML;
-      document.getElementById('idealist').innerHTML = object;
   </script>
 
 </body>
