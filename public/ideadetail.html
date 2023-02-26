@@ -42,7 +42,16 @@
   <script src="js/bootstrap.min.js"></script>
 
   <script>
-    i = getParam('id');
+    function getParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+    let i = getParam('id');
     //GASのAPIのURL（各自変更してください。）
     const endpoint =
         "https://script.google.com/macros/s/AKfycbwUoVHz1847ipxSlXZyGZVsR31HfnKf8hbZuGLWGX6VTLmfIwi3IcXYe_KkgNgADyZfVg/exec";
@@ -59,16 +68,16 @@
 
 
           let idea = document.getElementById('idea').innerHTML;
-          document.getElementById('idea').innerHTML = "<p>" + object[1].eventidea + "</p>";
+          document.getElementById('idea').innerHTML = "<p>" + object[i].eventidea + "</p>";
 
           let date = document.getElementById('date').innerHTML;
-          document.getElementById('date').innerHTML = "<p>" + object[1].eventdate + "</p>";
+          document.getElementById('date').innerHTML = "<p>" + object[i].eventdate + "</p>";
 
           let fee = document.getElementById('fee').innerHTML;
-          document.getElementById('fee').innerHTML = "<p>" + object[1].eventpfee + "円</p>";
+          document.getElementById('fee').innerHTML = "<p>" + object[i].eventpfee + "円</p>";
 
           let detail = document.getElementById('detail').innerHTML;
-          document.getElementById('detail').innerHTML = "<p>" + object[1].eventexpl + "</p>";
+          document.getElementById('detail').innerHTML = "<p>" + object[i].eventexpl + "</p>";
 
 
         });
