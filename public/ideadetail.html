@@ -68,13 +68,13 @@
             const object = data;
             console.log(object);
 
-
+          var date_2 = object[i].eventdate.slice( 0, -14) ;
 
           let idea = document.getElementById('idea').innerHTML;
           document.getElementById('idea').innerHTML = "<p>" + object[i].eventidea + "</p>";
 
           let date = document.getElementById('date').innerHTML;
-          document.getElementById('date').innerHTML = "<p>" + object[i].eventdate + "</p>";
+          document.getElementById('date').innerHTML = "<p>" + date_2 + "</p>";
 
           let fee = document.getElementById('fee').innerHTML;
           document.getElementById('fee').innerHTML = "<p>" + object[i].eventpfee + "円</p>";
