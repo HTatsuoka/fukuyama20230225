@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>-福山市- 中央公園イベントナビへようこそ</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <h1>中央公園イベントナビ</h1>
+
+  <div>
+    <a class="btn btn-primary rounded-0" href="makeidea.html">+ アイデアを追加する</a>
+  </div>
+
+  <h2>イベントのアイデア</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">イベント名</th>
+        <th scope="col">開催日</th>
+        <th scope="col">作成者</th>      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">##</th>
+        <td>##</td>
+        <td>##</td>
+        <td>##</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p id ="idealist"></p>
+
+  <h2>作成されたイベント</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">イベント名</th>
+        <th scope="col">開催日</th>
+        <th scope="col">作成者</th>      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">##</th>
+        <td>##</td>
+        <td>##</td>
+        <td>##</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+ 
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script>
+    //GASのAPIのURL（各自変更してください。）
+    const endpoint =
+        "https://script.google.com/macros/s/AKfycbwUoVHz1847ipxSlXZyGZVsR31HfnKf8hbZuGLWGX6VTLmfIwi3IcXYe_KkgNgADyZfVg/exec";
+        
+        //APIを使って非同期データを取得する
+        fetch(endpoint)
+        .then(response => response.json())
+        /*成功した処理*/
+        .then(data => {
+            //JSONから配列に変換
+            const object = data;
+            console.log(object);
+
+            let idealist = document.getElementById('idealist').innerHTML;
+      document.getElementById('idealist').innerHTML = object[1];
+
+            for(let i in object){
+              console.log(object[i].id);
+
+          }
+
+          
+            //inputタグそれぞれに取得したデータを設定
+            $('input').each(function (index, element) {
+                if (object[0][$(element).attr('name')]) {
+                    $(element).val([object[0][$(element).attr('name')]]);
+                }
+            });
+        });
+
+      let idealist = document.getElementById('idealist').innerHTML;
+      document.getElementById('idealist').innerHTML = object;
+  </script>
+
+</body>
+</html>
+
+
