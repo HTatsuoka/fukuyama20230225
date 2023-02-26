@@ -18,11 +18,11 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">イベント名</th>
+        <th scope="col">アイデア名</th>
         <th scope="col">開催日</th>
-        <th scope="col">作成者</th>      </tr>
+        <th scope="col">参加費(円)</th>      </tr>
     </thead>
-    <tbody>
+    <tbody id ="idealist">
       <tr>
         <th scope="row">##</th>
         <td>##</td>
@@ -44,7 +44,7 @@
         <th scope="col">ID</th>
         <th scope="col">イベント名</th>
         <th scope="col">開催日</th>
-        <th scope="col">作成者</th>      </tr>
+        <th scope="col">参加費(円)</th>      </tr>
     </thead>
     <tbody>
       <tr>
@@ -83,13 +83,14 @@
             for(let i in object){
               console.log(object[i].id);
               eventlist = eventlist + "<tr><td>" + object[i].id + "</td>";
-              eventlist = eventlist + "<td>" + object[i].eventdate + "</td>";
               eventlist = eventlist + "<td>" + object[i].eventidea + "</td>";
+              eventlist = eventlist + "<td>" + object[i].eventdate + "</td>";
+              eventlist = eventlist + "<td>" + object[i].eventpfee + "</td>";
               eventlist = eventlist + "</tr>"
           }
 
           let idealist = document.getElementById('idealist').innerHTML;
-          document.getElementById('idealist').innerHTML = eventlist;
+          document.getElementById('idealist').innerHTML = eventlist + "</tbody>";
 
 
             //inputタグそれぞれに取得したデータを設定

@@ -7,29 +7,70 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <h1>アイデア投稿フォーム</h1>
+  <h1>アイデアの詳細</h1>
 
   <div class ="container-fluid">
-    <form>
-      <div class="form-group">
-        <label>イベント名</label>
-        <input type="text" class="form-control" placeholder="イベント名" name="eventidea">
+      <div>
+        <button type="button" class="btn btn-secondary rounded-0">アイデア名</button>
+        <p id = "idea"></p>
       </div>
-      <div class="form-group">
-        <label>イベントの日時</label>
-        <input type="date" class="form-control" placeholder="日時" name="eventdate">
-      </div>     
-      <div class="form-group">
-        <label>イベントの詳細</label>
-        <input type="text" class="form-control" placeholder="イベントの詳細" name="eventexpl">
+      <div>
+        <button type="button" class="btn btn-secondary rounded-0">アイデアの日時</button>
+        <p id = "date"></p>
+      </div>    
+      <div>
+        <button type="button" class="btn btn-secondary rounded-0">アイデアの提案者</button>
+        <p id = "person"></p>
       </div>
-      <button type="submit" class="btn btn-prymary">イベントを作成して投稿する</button>
-    </form>
+      <div>
+        <button type="button" class="btn btn-secondary rounded-0">アイデアの参加費</button>
+        <p id = "fee"></p>
+      </div> 
+      <div>
+        <button type="button" class="btn btn-secondary rounded-0">アイデアの詳細</button>
+        <p id = "detail"></p>
+      </div>
+
   </div>
  
+  <div>
+    <a class="btn btn-primary rounded-0" href="https://tatsuokatest-fe2e7.web.app/index.html">TOPページへ戻る</a>
+  </div>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+
+  <script>
+    //GASのAPIのURL（各自変更してください。）
+    const endpoint =
+        "https://script.google.com/macros/s/AKfycbwUoVHz1847ipxSlXZyGZVsR31HfnKf8hbZuGLWGX6VTLmfIwi3IcXYe_KkgNgADyZfVg/exec";
+        
+        //APIを使って非同期データを取得する
+        fetch(endpoint)
+        .then(response => response.json())
+        /*成功した処理*/
+        .then(data => {
+            //JSONから配列に変換
+            const object = data;
+            console.log(object);
+
+
+
+          let idea = document.getElementById('idea').innerHTML;
+          document.getElementById('idea').innerHTML = "<p>" + object[1].eventidea + "</p>";
+
+          let date = document.getElementById('date').innerHTML;
+          document.getElementById('date').innerHTML = "<p>" + object[1].eventdate + "</p>";
+
+          let fee = document.getElementById('fee').innerHTML;
+          document.getElementById('fee').innerHTML = "<p>" + object[1].eventpfee + "円</p>";
+
+          let detail = document.getElementById('detail').innerHTML;
+          document.getElementById('detail').innerHTML = "<p>" + object[1].eventexpl + "</p>";
+
+
+        });
+  </script>
 </body>
 </html>
