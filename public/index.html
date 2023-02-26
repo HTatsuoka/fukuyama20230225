@@ -82,9 +82,12 @@
 
             for(let i in object){
               console.log(object[i].id);
+
+              var date = object[i].eventdate.slice( 0, -14) ;
+
               eventlist = eventlist + "<tr><td>" + object[i].id + "</td>";
-              eventlist = eventlist + "<td>" + object[i].eventidea + "</td>";
-              eventlist = eventlist + "<td>" + object[i].eventdate + "</td>";
+              eventlist = eventlist + "<td><a href= \"ideadetail.html?id=" + i + "\">" + object[i].eventidea + "</a></td>";
+              eventlist = eventlist + "<td>" + date + "</td>";
               eventlist = eventlist + "<td>" + object[i].eventpfee + "</td>";
               eventlist = eventlist + "</tr>"
           }
